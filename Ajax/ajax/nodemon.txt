@@ -1,0 +1,7 @@
+下载nodemon 
+nodemon时基于node.js运行的，所以首先安装node.js
+无法加载文件，因为在此系统上禁止运行脚本这个原因是
+PowerShell 执行策略不对
+以管理员身份运行软件
+修改一下命令，在powershell打开输入：
+Set-ExecutionPolicy RemoteSigned

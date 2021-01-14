@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IE缓存问题</title>
+    <style>
+        #result{
+            width: 200px;
+            height: 100px;
+            border: solid 1px rebeccapurple;
+        
+        }
+    </style>
+</head>
+<body>
+    <button>点击发生请求</button>  
+    <div id="result"></div>
+    <script>
+        //获取button元素
+        const btn= document.getElementsByTagName('button')[0];
+        const result=document.getElementById('result'); 
+
+        //绑定事件
+        btn.addEventListener('click',function(){
+            // console.log('test');
+            const xhr=new XMLHttpRequest();
+            //console.log(new Date());
+            //Thu Jan 14 2021 11:38:58 GMT+0800 (中国标准时间)
+            //console.log(Date.now());
+            //1610595538374
+            xhr.open('GET','http://127.0.0.1:8000/ie?t='+Date.now());
+            xhr.send();
+            xhr.onreadystatechange=function(){
+                if (xhr.readyState===4) {
+                    if (xhr.status>=200&&xhr.status<300) {
+                        result.innerHTML=xhr.response;
+                    }
+                }
+            }
+
+        })
+
+
+
+    </script>
+</body>
+</html>
